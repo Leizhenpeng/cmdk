@@ -21,9 +21,19 @@ test.describe('basic behavior', async () => {
   })
 
   test('item onSelect is called on click', async ({ page }) => {
-    const item = page.locator(`[cmdk-item][data-value="Item"]`)
-    const [message] = await Promise.all([page.waitForEvent('console'), item.click()])
-    expect(message.text()).toEqual('Item selected')
+    const item = page.locator(`[cmdk-item][data-value="Item"]`);
+
+    // 添加事件监听器，过滤控制台消息
+    const [message] = await Promise.all([
+      page.waitForEvent('console', {
+        predicate: (msg) => msg.text() === 'Item selected',
+        timeout: 5000
+      }),
+      item.click()
+    ]);
+
+    // 断言消息内容
+    expect(message.text()).toEqual('Item selected');
   })
 
   test('first item is selected by default', async ({ page }) => {

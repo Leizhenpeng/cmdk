@@ -9,7 +9,8 @@
     "format": "prettier '**/*.{js,jsx,ts,tsx,json,md,mdx,css,scss,yaml,yml}' --write",
     "preinstall": "npx only-allow pnpm",
     "test:format": "prettier '**/*.{js,jsx,ts,tsx,json,md,mdx,css,scss,yaml,yml}' --check",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:watch": "playwright test --watch"
   },
   "devDependencies": {
     "@playwright/test": "1.41.1",

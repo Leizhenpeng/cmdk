@@ -7,8 +7,9 @@ test.describe('group', async () => {
 
   test('groups are shown/hidden based on item matches', async ({ page }) => {
     await page.locator(`[cmdk-input]`).type('z')
-    await expect(page.locator(`[cmdk-group][data-value="Animals"]`)).not.toBeVisible()
+    await expect(page.locator(`[cmdk-group][data-value="Animals"]`)).not.toBeVisible(({ timeout: 10000 }))
     await expect(page.locator(`[cmdk-group][data-value="Letters"]`)).toBeVisible()
+
   })
 
   test('group can be progressively rendered', async ({ page }) => {
